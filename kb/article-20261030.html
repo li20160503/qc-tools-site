@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 会议纪要怎么做？从录音转文字到结构化纪要的完整流程（附提示词）</title>
+<meta name="description" content="AI 会议纪要怎么做：会议录音转文字后，套用这段提示词让 AI 一次输出主题、结论、待办与遗留问题，5 分钟核对后即成一封能直接发出去的纪要。含可直接复制的提示词。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>AI 会议纪要怎么做？从录音转文字到结构化纪要的完整流程（附提示词）</h1>
+    <div class="meta">发布日期：2026-10-30 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>开 1 小时的会，整理纪要往往又要花半小时：回听录音、抓重点、拆分待办，还要担心漏掉关键决议。直接把录音丢给 AI 转写，得到的又是一大段口语流水账，离"能直接发出去的纪要"还很远。问题不在 AI 不行，而在流程和提示词不对——按下面四步做，10 分钟内就能拿到一份结构化纪要草稿。</p>
+
+    <h2>第一步：先把录音转成文字稿</h2>
+    <ol>
+      <li>最省事的方式是使用会议软件自带的转写功能（腾讯会议、飞书妙记等均支持会议录制转写），会后直接导出文字稿；</li>
+      <li>如果是本地录音，可以上传到专门的语音转写工具（如通义听悟），选择"区分说话人"，这样后面 AI 才能准确对应"谁说了什么"；</li>
+      <li>导出纯文本稿，检查是否有明显的转写错乱段落，粗略清理后进入下一步。</li>
+    </ol>
+
+    <h2>第二步：把文字稿交给 AI，套用这段提示词</h2>
+    <p>拿到转写稿后，直接复制下面这段提示词，连同文稿一起发给 AI（文心一言、DeepSeek、豆包等对话工具均可）：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 会议纪要提示词</span>你是一名资深会议纪要专员。我会给你一段会议录音转写稿，请只依据文稿内容整理，不要补充文稿里没有的信息：
+1. 用一句话概括本次会议主题；
+2. 列出已达成一致的结论，逐条编号；
+3. 列出所有待办事项，以"事项 | 负责人 | 截止时间"的表格形式输出，文稿中未提到的统一写"未明确"；
+4. 列出仍存在的分歧或遗留问题；
+5. 全部内容按 Markdown 格式输出。
+若某一类内容在文稿中确实不存在，请明确输出"无"，不要编造。</div>
+
+    <h2>第三步：超长文稿分段处理</h2>
+    <ol>
+      <li>一次贴不下的长会议（转写稿超过对话窗口上限时），按"议题段"切成 2-3 段；</li>
+      <li>每段先让 AI 输出"本段要点"，再聚合各段要点，最后对聚合结果重复一次第二步的提示词，避免信息丢失；</li>
+      <li>分段时尽量按议题切，不要从一句话中间断开，否则责任人归属容易错乱。</li>
+    </ol>
+
+    <h2>第四步：人工核对 5 分钟再发出</h2>
+    <p>AI 产出的是草稿，发之前逐条核对：结论是否准确、待办责任人是否张冠李戴、截止时间有没有歧义。改完后粘贴进公司现有纪要模板即可，整个过程比从头整理快得多。</p>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>转写稿口语化严重：</b>先让 AI 做一次"去噪"（去掉语气词、客套话与重复发言），再要求提取要点，否则纪要里全是"嗯、那个、对吧"；</li>
+      <li><b>提示词必须写"只依据文稿、不要补充"：</b>否则 AI 会按常见会议套路脑补，把没讨论过的事写进纪要；</li>
+      <li><b>涉密内容不要进外部 AI：</b>涉及薪酬、人事、商业秘密的会议，不要上传到第三方转写与对话工具，合规比效率重要；</li>
+      <li><b>责任人要人工复核：</b>AI 从口语里"猜"出的负责人可能不准确，分发前务必逐条确认。</li>
+    </ul>
+
+    <div class="cta">想直接套用更多职场模板与提示词？本站持续更新「更多模板 / 提示词可获取」合集，覆盖周报、邮件、复盘、简历等高频场景，欢迎收藏关注。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-10-30 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
