@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 办公提示词库 · 快速复制即用的场景提示词</title>
+<meta name="description" content="AI 办公提示词库：简历优化、PPT 大纲、Excel 公式、邮件润色、工作总结等高频办公场景的提示词速查库，一键复制即用，持续更新。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+header{text-align:center;padding:18px 0 8px}
+header h1{font-size:26px;font-weight:800;background:linear-gradient(120deg,var(--pri),var(--pri2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px;font-size:14px}
+.search-bar{display:flex;gap:10px;margin:16px 0 12px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:220px;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;background:#fff;outline:none}
+.search-bar input:focus{border-color:var(--pri)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.tag{border:1px solid var(--line);background:var(--card);color:var(--mut);font-size:12px;font-weight:600;border-radius:999px;padding:4px 12px;cursor:pointer;user-select:none}
+.tag:hover{color:var(--pri);border-color:var(--pri)}
+.tag.on{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-color:transparent}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 6px 24px rgba(79,70,229,.07);margin-top:18px}
+.item{background:#fbfbfe;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.item h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.item .scene{background:#eef2ff;color:var(--pri);font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px}
+.item .idx{color:var(--mut);font-size:11px}
+.item .pt{font-size:13.5px;color:#334155;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:10px 0 0;white-space:pre-wrap;line-height:1.7}
+.item .ops{display:flex;gap:8px;margin-top:10px;justify-content:flex-end}
+.copy-btn{border:none;background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:6px 16px;cursor:pointer}
+.copy-btn.ok{background:#16a34a}
+.empty{color:var(--mut);font-size:13px;text-align:center;padding:26px 0}
+.note{color:var(--mut);font-size:12px;margin-top:14px}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
+@media(max-width:640px){header h1{font-size:21px}.card{padding:18px 14px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link" href="../kb/">知识库</a>
+    <a class="nav-link on" href="./">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+  <header>
+    <h1>AI 办公提示词库</h1>
+    <p>复制即用的高频办公场景提示词 · 输入关键词搜索，或按场景筛选</p>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="kw" placeholder="搜索：简历 / PPT / Excel / 邮件 / 总结 …">
+  </div>
+  <div class="tags" id="tagList"></div>
+
+  <div class="card">
+    <div id="listBox"><div class="empty">正在加载提示词库…</div></div>
+    <p class="note">本库由自动化任务定期扩充，每条提示词均为可直接粘贴到 AI 对话使用的完整文本。使用前请结合实际场景核对，涉密内容勿直接贴入外部 AI 工具。</p>
+  </div>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>AI 办公效率提示词库 · 持续更新 · 内容仅供参考</footer>
+</div>
+<script>
+var DATA=[];
+var curTag='';
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function render(){
+  var kw=(document.getElementById('kw').value||'').trim().toLowerCase();
+  var list=DATA.filter(function(a){
+    var t=curTag===''||a.scene===curTag;
+    var k=kw===''||(a.title+' '+a.prompt+' '+a.scene).toLowerCase().indexOf(kw)>=0;
+    return t&&k;
+  });
+  var el=document.getElementById('listBox');
+  if(!list.length){el.innerHTML='<div class="empty">没有匹配的提示词，换个关键词试试。</div>';return;}
+  var html='';
+  list.forEach(function(a,i){
+    html+='<div class="item"><h3><span class="idx">#'+(i+1)+'</span>'+esc(a.title)+'<span class="scene">'+esc(a.scene)+'</span></h3>'
+      +'<div class="pt" id="pt-'+a.id+'">'+esc(a.prompt)+'</div>'
+      +'<div class="ops"><button class="copy-btn" data-id="'+a.id+'" data-toggle="pt-'+a.id+'">复制</button></div></div>';
+  });
+  el.innerHTML=html;
+}
+document.getElementById('listBox').addEventListener('click',function(e){
+  var b=e.target;
+  if(b.className.indexOf('copy-btn')>=0){
+    var t=document.getElementById(b.getAttribute('data-toggle'));
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.textContent);}
+    else{var r=document.createRange();r.selectNodeContents(t);var s=window.getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges();}
+    b.textContent='已复制 ✓';b.className='copy-btn ok';
+    setTimeout(function(){b.textContent='复制';b.className='copy-btn';},1600);
+  }
+});
+document.getElementById('kw').addEventListener('input',render);
+fetch('./prompts.json').then(function(r){return r.json();}).then(function(list){
+  DATA=list;
+  var tags=[''];
+  list.forEach(function(a){if(tags.indexOf(a.scene)<0)tags.push(a.scene);});
+  var th='';
+  tags.forEach(function(t,i){
+    var label=t===''?'全部':t;
+    var on=t===curTag?' on':'';
+    th+='<span class="tag'+on+'" data-tag="'+t+'">'+label+'</span>';
+  });
+  document.getElementById('tagList').innerHTML=th;
+  render();
+}).catch(function(){document.getElementById('listBox').innerHTML='<div class="empty">提示词库加载失败。</div>';});
+document.getElementById('tagList').addEventListener('click',function(e){
+  var t=e.target;
+  if(t.className.indexOf('tag')>=0){
+    curTag=t.getAttribute('data-tag');
+    var all=document.querySelectorAll('#tagList .tag');
+    for(var i=0;i<all.length;i++)all[i].className=all[i].getAttribute('data-tag')===curTag?'tag on':'tag';
+    render();
+  }
+});
+</script>
+</body>
+</html>
