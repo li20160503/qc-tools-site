@@ -45,7 +45,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
   </header>
   <div class="card">
     <h2>全部文章</h2>
-    <div class="placeholder">本栏目由自动化任务每日 23:30 更新：每篇为 600-1200 字原创实操教程（含可直接复制的提示词与步骤）。上线后将自动填充文章列表。</div>
+    <div class="placeholder" id="kbEmptyTip">本栏目由自动化任务每日 23:30 更新：每篇为 600-1200 字原创实操教程（含可直接复制的提示词与步骤）。暂无文章，等待自动填充。</div>
     <ul class="arts" id="artList"></ul>
   </div>
   <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
@@ -55,6 +55,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
 fetch('./articles.json').then(function(r){return r.json()}).then(function(list){
   var el=document.getElementById('artList');
   if(!list||!list.length)return;
+  document.getElementById('kbEmptyTip').style.display='none';
   var html='';
   list.slice().reverse().forEach(function(a){
     html+='<li><a href="'+a.file+'">'+a.title+'</a><span class="d">'+a.date+' · '+a.summary+'</span></li>';
