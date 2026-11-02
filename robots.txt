@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://li20160503.github.io/qc-tools-site/sitemap.xml
