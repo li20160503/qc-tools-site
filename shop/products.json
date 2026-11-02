@@ -1,1 +1,14 @@
-[{"name": "AI 办公提示词包（9 大场景模板）", "price": "参考价待定", "desc": "简历/周报/PPT/会议纪要/Excel 等 9 大高频办公场景可直接复制的提示词模板，PDF 文档交付", "url": "./product-ai-prompt-pack.html"}]
+[
+  {
+    "name": "AI 办公提示词包（9 大场景模板）",
+    "price": "参考价待定",
+    "desc": "简历/周报/PPT/会议纪要/Excel 等 9 大高频办公场景可直接复制的提示词模板，PDF 文档交付",
+    "url": "./product-ai-prompt-pack.html"
+  },
+  {
+    "name": "《AI 办公效率手册》电子书（收录 2 篇教程）",
+    "price": "参考价待定",
+    "desc": "知识库原创 AI 办公实操教程合集电子书，免费在线预览，支付渠道接入后开放购买",
+    "url": "./product-ai-office-handbook.html"
+  }
+]
