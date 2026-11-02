@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 AI 写周报：把流水账变成领导一眼能看完的结构化周报（附提示词）</title>
+<meta name="description" content="周报还在复制粘贴聊天记录？用这段提示词把流水账改写成结构化的周报：本周进展、数据结果、下周计划、风险求助四处填好，10 分钟搞定，附可直接复制的提示词与常见坑。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>用 AI 写周报：把流水账变成领导一眼能看完的结构化周报（附提示词）</h1>
+    <div class="meta">发布日期：2026-11-02 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>很多人写周报的方式，是把这一周微信上跟同事说过的每句话都复制进去——"改了 XX 的 bug""和 XX 对了一下需求""下周继续做 XX"。这样写出来的周报信息量很大，但领导要自己在里面翻重点，翻着翻着就划走了。</p>
+    <p>周报的本质是汇报，不是流水账：领导想知道的是这周产出了什么结果、有没有风险、下周我该不该持续投人。把"过程"翻译成"结果"，这正是 AI 最擅长的事。下面这套流程，10 分钟内能产出一份可直接提交的结构化周报。</p>
+
+    <h2>第一步：收集原始素材，越碎越好</h2>
+    <ol>
+      <li>把这一周做过的活全部列出来，不用整理顺序，想到一条写一条，口语化没关系：改 bug、开会、对需求、写文档、帮同事答疑都算；</li>
+      <li>如果日报里有记录，直接复制日报全文，作为 AI 的最好原料；</li>
+      <li>把关键数据先找出来：完成了几个需求、修了几个线上问题、覆盖率/转化率/时长等指标是多少，后面让 AI 帮你填进文案里。</li>
+    </ol>
+    <p>素材是周报的地基，缺素材时 AI 无能为力；素材够碎没关系，这正是第二步要解决的。</p>
+
+    <h2>第二步：把素材丢给 AI，套用这段提示词</h2>
+    <p>复制下面这段提示词，连同你的素材一起发给 AI（DeepSeek、文心一言、豆包等均可）：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 周报提示词</span>你是一名经验丰富的职场周报顾问。我会给你一堆本周的工作素材（可能很零碎、口语化），请帮我改写成一份结构化的周报，要求：
+1. 分四部分输出：本周工作进展、关键数据与结果、遇到的问题与求助、下周计划；
+2. 每条进展用"动词开头 + 动作对象 + 结果"的句式改写，例如"修复了登录页在 iOS 下的闪退问题，覆盖约 3000 日活的用户路径"；
+3. 素材里没有提到或含糊的内容，用"待补充"标注，不要替我编造数据；
+4. 删除重复表述，把同类事项合并成一条；
+5. 全文用第一人称，语气专业但不过度夸张，总长度控制在 300 字以内。
+素材如下：</div>
+    <p>如果一次贴不下，先把素材切成"工作类 / 沟通类"两段分别处理，再让 AI 合并去重。</p>
+
+    <h2>第三步：补数据、调重点，只留三件事</h2>
+    <ol>
+      <li>AI 标了"待补充"的地方，对照第一步收集的数据逐个补齐，一个数据都没有的事项考虑删掉或降级为一句带过；</li>
+      <li>让 AI 从全部进展里挑出对项目/营收影响最大的三件事，放在第一部分最前面——领导扫周报的头 10 秒，决定对这份周报的整体印象；</li>
+      <li>本周没有进展但踩了坑的，如实写进"遇到的问题与求助"，并带上你准备怎么解的方案，这是加分的诚实。</li>
+    </ol>
+
+    <h2>第四步：格式与细节检查后提交</h2>
+    <ol>
+      <li>核对数据没有夸大或错位（完成数量、修复数量、百分比），AI 的改写不会改错事实，但不代表你的原始记忆一定对；</li>
+      <li>对照公司模板调整格式，通常保留四部分骨架即可；</li>
+      <li>最后通读一遍：如果有内容会引发不必要的追问或误会，主动删掉或用更稳的表述。</li>
+    </ol>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>把周报写成日报加总：</b>周报要的是"本周结果 + 下周计划"，不是七份日报的拼接，素材合并时长尾事项大胆删；</li>
+      <li><b>提示词不写"不要编造"：</b>AI 会按常见工作的套路替你补"完成率提升 20%"之类的数字，务必在提示词里锁死"待补充"规则；</li>
+      <li><b>只报喜不报忧：</b>风险越早暴露越安全，把阻塞和求助单列一节，反而显得你主动可控；</li>
+      <li><b>涉密内容注意脱敏：</b>正在谈的薪资、未公开的商务条款、内部敏感数据，不要原样贴进外部 AI 工具，先替换成代号或省略。</li>
+    </ul>
+
+    <div class="cta">周报、日报、邮件、复盘……更多可直接套用的职场提示词模板，本站持续更新，欢迎收藏关注。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-11-02 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
