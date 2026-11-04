@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 AI 写职场邮件：催办、请假、致歉一次说清（附可直接复制的提示词）</title>
+<meta name="description" content="写邮件憋半小时？把收件人、目的、要点交给 AI，3 分钟出稿。本文给出通用职场邮件提示词，外加催办、请假、致歉三类高频场景话术，附可直接复制的提示词与常见坑。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>用 AI 写职场邮件：催办、请假、致歉一次说清（附可直接复制的提示词）</h1>
+    <div class="meta">发布日期：2026-11-04 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>一封工作邮件，措辞太直怕显得没礼貌，太客气又显得没主见；催同事要数据、向领导确认事情，删删改改半天发不出去，写英文邮件更是读完自己都觉得"翻译腔"。每次为几十个字憋半小时，是很多人的真实日常。</p>
+    <p>职场邮件的难点从来不是"会不会写"，而是"敢不敢写、写得准不准"。把收件人、目的、要点讲清楚交给 AI，它 3 分钟给你一版能直接改的初稿，你要做的只是核对事实，照着这套流程做就行。</p>
+
+    <h2>第一步：动手前，先想清楚"邮件四要素"</h2>
+    <p>打开 AI 之前，先把下面四个信息准备好，缺哪一个 AI 都会写偏：</p>
+    <ol>
+      <li><b>收件人是谁、跟你什么关系</b>：直属领导、跨部门平级还是客户，直接决定语气；</li>
+      <li><b>这封邮件的唯一目的</b>：催收、请假、说明延期、同步进展，一次只做一件事；</li>
+      <li><b>必须写进去的 3-5 个要点</b>：具体日期、数字、文件名都算，越具体越好；</li>
+      <li><b>希望的收尾动作</b>：回复确认、周五前给答复、约个会，不然对方不知道下一步干什么。</li>
+    </ol>
+    <p>这一步花 2 分钟把自己的需求"说人话"，后面省回来的可不止 10 分钟。</p>
+
+    <h2>第二步：套用通用提示词，一次出稿</h2>
+    <p>复制下面这段，把【】里的内容换成你的四要素，发给任意 AI 对话工具（DeepSeek、文心一言、豆包等均可）：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 职场邮件通用提示词</span>你是一名经验丰富的职场邮件助理。请帮我写一封邮件：
+收件人是【对象与关系，如：跨部门同事小李】；
+目的是【唯一目的，如：催收本周一约定提交的数据】；
+需要写到的要点有：【要点1；要点2；要点3】；
+希望的收尾动作是【如：本周五下午 5 点前回复确认】。
+要求：
+1. 第一行给出邮件主题，凝练重点，不要用感叹号；
+2. 正文按"礼貌开场 + 背景与请求 + 明确收尾"三段组织，总长不超过 200 字；
+3. 语气【客气但直接 / 正式 / 日常协作】，不要堆砌"冒昧打扰""万分感谢"这类空话；
+4. 我没有提到的日期、数字、事实一律用【待补充】标出，不要替我编造；
+5. 结尾给一句自然的中文落款。</div>
+    <p>如果第一版语气不对，不要重写整段，直接追一句"再客气一点"或"再直接一点"，一次就能调到位。</p>
+
+    <h2>第三步：三类高频场景，加一句就够</h2>
+    <ol>
+      <li><b>催办、跟进：</b>在通用提示词后追加"对方上周口头答应提供数据但一直没给，催办时不要指责，给出明确截止时间，并主动说明对方有困难可以提前告诉我"；</li>
+      <li><b>请假：</b>追加"请事假 2 天（11 月 12-13 日），提前写清楚手头任务已交接给 XX、紧急事项可电话联系，语气正式适度"；</li>
+      <li><b>致歉、说明延期：</b>追加"向客户说明交付延期 3 天：先道歉、简述原因、给出新的时间表，并补充补救措施（如先交付部分成果）"。</li>
+    </ol>
+    <p>这三类邮件最容易在"怎么说都尴尬"上卡壳，提前把话术框架给 AI，比自己反复斟酌快得多。</p>
+
+    <h2>第四步：人工把关 1 分钟，再点发送</h2>
+    <ol>
+      <li>逐项核对 AI 没有编造的内容：日期、数字、附件名、收件人列表，一个都不能错；</li>
+      <li>通读一遍感受语气：如果你自己读着都别扭，说明还没调到位，改完再发；</li>
+      <li>确认附件已上传、抄送名单没错——这步 AI 帮不了你。</li>
+    </ol>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>不写"不要编造"就出稿：</b>AI 会顺手补一句"已于 11 月 2 日发送"这种你没做过的事。提示词里务必锁死【待补充】规则，发之前再核一遍日期数字；</li>
+      <li><b>四要素没想清就开写：</b>目的含糊时 AI 只能猜，猜错就要来回改。宁可先花 2 分钟列要点，别让它替你编需求；</li>
+      <li><b>涉密内容直接粘贴：</b>薪资、未公开的数据、内部系统截图，不要原样贴进外部 AI 工具，先替换成"XX 数据""按内部口径"再写；</li>
+      <li><b>英文邮件"翻译腔"：</b>加一句"请用母语者自然的写法，不要逐句直译，保留商务正式度"，读起来会自然很多。</li>
+    </ul>
+
+    <div class="cta">催办、请假、致歉、转岗通知……更多可直接套用的职场邮件模板与提示词，本站持续更新，欢迎收藏关注。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-11-04 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
