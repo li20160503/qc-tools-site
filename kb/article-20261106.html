@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 AI 总结文档：PDF、长报告几秒提炼成要点（附可复制提示词）</title>
+<meta name="description" content="收到长篇 PDF 和报告读不完？用 AI 总结文档的正确姿势：能上传就不粘贴、套用三件套提示词、超长文档先拆章节再合并、关键结论追出处，附可直接复制的提示词与常见坑。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>用 AI 总结文档：PDF、长报告几秒提炼成要点（附可复制提示词）</h1>
+    <div class="meta">发布日期：2026-11-06 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>收到一份 200 页的 PDF 行业报告，领导下班前要 3 页摘要；几十页的产品说明书、合同、论文读下来一小时起步，读完转头就说不上重点。想复制全文丢给 AI，对话框又提示"内容过长"。总结文档不是耐力活，是技巧活——选对入口、用对提示词，几分钟就能拿到能直接用的要点稿。</p>
+    <p>下面这套流程适用于所有主流对话式 AI（DeepSeek、豆包、文心一言、Kimi 等）。</p>
+
+    <h2>第一步：能上传就上传，别复制粘贴</h2>
+    <p>当前主流 AI 工具基本都支持直接上传文件（PDF / Word / txt），把文档原文件拖进对话框比粘贴可靠得多：</p>
+    <ol>
+      <li>粘贴会丢表格结构、页眉页脚，金额和数字容易错位；</li>
+      <li>超长的文档，粘贴会被截断，AI 只看到前半截，总结出来自然是残缺的；</li>
+      <li>上传的文件 AI 能整篇读完，扫描件识别差的，先转成文字版再传。</li>
+    </ol>
+
+    <h2>第二步：套用「三件套」总结提示词</h2>
+    <p>不要只说"帮我总结一下"，那是让 AI 自由发挥。用下面这段提示词，一次拿到能直接交付的结果：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 通用总结提示词</span>你是一位资深资料分析师。这是一份【文档类型：行业报告 / 产品说明书 / 合同 / 论文】，请按下面三件事总结：
+1. 用 5-8 条要点概括核心结论，按重要程度排序，每条不超过 30 字；
+2. 单独列出"硬信息清单"：所有关键数字、日期、金额、百分比，一个都不能漏；
+3. 列出"待确认点"：原文没说清、或需要人工复核的地方。
+全程只依据原文，原文没有的信息不要补充；拿不准的标注"原文未提及"。</div>
+    <p>要数字、要出处、要"待确认点"——这三点决定了总结是可用的工作稿，还是正确的废话。</p>
+
+    <h2>第三步：超长文档，先拆章节再合并</h2>
+    <p>几百页的文档一次问到底，容易漏中间章节。改成让 AI 先分章、再汇总：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 超长文档分段提示词</span>请把这份文档按章节依次处理：每一章单独输出 3 条要点并保留章节名；全部章节处理完后，合并成一份不超过 500 字的总摘要，并在总摘要中标注"重点来自第几章"，方便我回看原文。</div>
+    <p>工具一次读不完时，就手动按目录拆段，逐段用上面的提示词处理，最后把各段要点拼给 AI 做总合并。</p>
+
+    <h2>第四步：关键结论先「追出处」再采用</h2>
+    <ol>
+      <li>追加一句：<span class="prompt-label" style="margin:0;padding:2px 8px">追问提示词</span>请把你上面的每一条要点，标出它来自的章节或页码；关键数字附上原文的原句。</li>
+      <li>抽 1-2 个最关键的数字或结论，回原文对应位置核对一遍再写进交付材料。</li>
+    </ol>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>只让 AI"自由总结"：</b>出来的全是"该报告分析了行业现状并提出建议"这类正确废话，关键数字一个都没有——所以模板里必须写死"硬信息清单"；</li>
+      <li><b>长文粘贴被截断：</b>AI 只读了前半段，总结缺少后半部分——能上传就一定上传；</li>
+      <li><b>把总结当最终结论：</b>合同条款、报销金额、截止日期这类高风险内容，AI 总结只能当索引，最终以原文为准。</li>
+    </ul>
+
+    <div class="cta"><b>更多模板可获取：</b>文档总结、PPT、Excel、邮件等场景的成品提示词在提示词库与产品店持续上新，收藏本站，每篇教程都附可直接复制的提示词。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-11-06 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
