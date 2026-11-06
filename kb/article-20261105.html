@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 AI 清洗 Excel 表格：去重、补全、拆分一次搞定（附可复制提示词）</title>
+<meta name="description" content="表格太脏不会处理？让 AI 先体检、再出方案：小表直接粘贴给 AI 洗，大表用 Excel 内置功能加 AI 公式，去重、空值标注、一列拆多列一次搞定，附可直接复制的提示词与常见坑。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>用 AI 清洗 Excel 表格：去重、补全、拆分一次搞定（附可复制提示词）</h1>
+    <div class="meta">发布日期：2026-11-05 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>从 ERP、网店后台、协作文档里导出的表格，十有八九是"脏"的：同一个人出现三四行，手机号一会儿 11 位一会儿带横杠，城市和电话挤在同一列里。手工清洗一小时，回头一核对，漏网的往往比洗掉的还多。</p>
+    <p>清洗表格不是技术问题，而是"脏点太碎、重复劳动磨人"。正确分工是：AI 负责体检和出方案，你和 Excel 负责执行，10 分钟收工。</p>
+
+    <h2>第一步：先让 AI 做「体检」，别急着动手</h2>
+    <p>复制下面这段提示词，把你表格里最乱的 5-10 行（含表头）原样粘进去，发给任意 AI 对话工具（DeepSeek、豆包、文心一言均可）：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 表格体检提示词</span>你是一名数据清洗专家。以下是我表格的样本（含表头），请逐项列出这张表的数据问题：
+1. 是否重复行，依据哪些列判断；
+2. 空值分布在哪些列；
+3. 格式不统一（日期、数字、手机号）具体在哪些列；
+4. 是否有"一列里混了多种信息"的情况；
+5. 其它明显异常。
+只列问题清单，不要给解决方案。
+【粘贴样本行，含表头】</div>
+    <p>拿到问题清单再动手，既不会"不知道从哪下手"，也不会漏掉隐藏的坑。</p>
+
+    <h2>第二步：100 行以内的小表，直接让 AI 洗</h2>
+    <p>把整张表（含表头）粘贴进对话，用下面这段提示词，AI 会直接返回清洗后的表格，复制回 Excel 即可：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 整表清洗提示词</span>你是数据清洗助手。请把下面这张表清洗后完整输出：
+1. 保留原表所有列和行顺序，一行都不能少；
+2. 删除完全重复的行，只保留第一次出现的；
+3. 缺失值填 NULL，绝对不要自己编内容；
+4. 日期统一为 YYYY-MM-DD，数字去掉千分位；
+5. 手机号统一为 11 位纯数字；
+6. 只输出 Markdown 表格，不要输出任何说明文字。
+表格如下：【粘贴整张表，含表头】</div>
+
+    <h2>第三步：大表走「AI 给方案 + Excel 功能」</h2>
+    <p>超过几百行的表别硬贴，AI 的上下文放不下。把体检出的问题描述给 AI，让它给出用 Excel 内置功能的处理步骤：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 大表处理方案提示词</span>我的表格一共 5000 行，体检出以下问题：【粘贴第一步的问题清单】。
+请给出用 Excel 内置功能（"数据→删除重复项""数据→分列"等）处理的具体步骤；需要公式的地方，给我可以直接复制粘贴的公式，并用 B2 这样的格子坐标写清楚。</div>
+    <p>按它给的步骤执行即可，核心就三件事：去重用"数据 → 删除重复项"，选对判断列；一列挤多种信息用"数据 → 分列"按分隔符拆开；空值要统一标注，用公式一次性填充：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 空值标注公式</span>=IF(B2="","待核实",B2)
+（把 B2 换成你的实际单元格，向下填充即可）</div>
+
+    <h2>第四步：清洗完花 2 分钟复核</h2>
+    <ol>
+      <li>对比清洗前后的总行数，知道去重删了多少行、心里有数；</li>
+      <li>全选插入"表格"样式并筛选，抽查空值列、日期列是否干净；</li>
+      <li>身份证、订单号这类长数字列，确认没变成科学计数法、尾号没丢。</li>
+    </ol>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>别让 AI 脑补空值：</b>不锁"缺失填 NULL"，AI 会顺手填上"北京""暂无数据"这类看似合理的值，等发现时数据已经被污染了；</li>
+      <li><b>长数字变科学计数法：</b>身份证、订单号粘回 Excel 变成 1.23E+17 且尾号丢失——粘贴前先把列设为"文本"格式，或先用"分列"转文本；</li>
+      <li><b>一列多值直接丢给 AI 拆：</b>容易拆错位、上下行错乱，先用"数据 → 分列"拆开，再让 AI 处理内容，各干各的。</li>
+    </ul>
+
+    <div class="cta"><b>更多模板可获取：</b>Excel 清洗、去重、拆分、合并的提示词与公式模板，本站持续更新，收藏起来下次直接用。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-11-05 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
