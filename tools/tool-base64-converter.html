@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base64 编解码工具 · 在线 Base64 编码/解码/转换</title>
+<meta name="description" content="免费在线 Base64 编解码工具：文本一键编码为 Base64、Base64 解码为中文原文，支持 URL-safe 模式与 UTF-8 中文、表情符号，附 Base64 字符数/字节数统计与文件转 DataURL，全部在浏览器本地完成，不上传数据。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb;--ok:#16a34a;--err:#dc2626}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+header{text-align:center;padding:18px 0 8px}
+header h1{font-size:26px;font-weight:800;background:linear-gradient(120deg,var(--pri),var(--pri2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 6px 24px rgba(79,70,229,.07);margin-top:18px}
+.card h2{font-size:18px;margin-bottom:4px}
+.desc{color:var(--mut);font-size:13px;margin-bottom:14px}
+textarea,input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;background:#fbfbfe;outline:none;transition:.15s}
+textarea:focus,input:focus,select:focus{border-color:var(--pri);background:#fff}
+textarea.mono,input.mono{font-family:Consolas,Menlo,Monaco,"Courier New",monospace}
+.rows{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.btn{border:none;background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:10px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:#eef0ff;color:var(--pri)}
+.btn.gray{background:#f1f5f9;color:#475569}
+.err{display:none;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:12px}
+.err.on{display:block}
+.err b{font-weight:800}
+.muted{color:var(--mut);font-size:12px}
+.opt{display:flex;align-items:center;gap:8px;font-size:13px;color:#475569;cursor:pointer;user-select:none;background:#f8fafc;border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.opt input{width:auto;accent-color:var(--pri);margin:0}
+.out-head{display:none;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 8px;flex-wrap:wrap}
+.out-head.on{display:flex}
+.out-head label.lbl{font-size:13px;font-weight:700;color:var(--ink)}
+textarea.out{background:#0f172a;color:#e2e8f0;font-family:Consolas,Menlo,Monaco,"Courier New",monospace;white-space:pre;word-break:break-all;min-height:120px}
+.stat{display:flex;gap:24px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--mut)}
+.stat b{display:block;font-size:15px;color:var(--pri)}
+.drop{display:flex;align-items:center;justify-content:center;flex-direction:column;border:2px dashed var(--line);border-radius:12px;padding:26px;cursor:pointer;transition:.15s;background:#fafaff;text-align:center}
+.drop:hover{border-color:var(--pri);background:#f5f6ff}
+.drop b{font-size:14px;margin-top:8px}
+.drop p{color:var(--mut);font-size:12px;margin-top:4px}
+.seo-note{margin-top:30px;color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
+@media(max-width:640px){header h1{font-size:21px}.card{padding:18px 14px}.site-nav{gap:10px}.stat{gap:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link" href="../kb/">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+  <header>
+    <h1>Base64 编解码工具</h1>
+    <p>文本 ↔ Base64 互转 · 支持中文 / 表情符号 · URL-safe 模式 · 文件转 DataURL</p>
+  </header>
+
+  <div class="card">
+    <h2>文本 ↔ Base64</h2>
+    <p class="desc">输入文本点击「编码」得到 Base64；粘贴 Base64 点击「解码」还原原文。解码自动兼容 URL-safe 形式（- 与 _）。</p>
+    <label class="lbl" for="in"><span class="muted" style="font-weight:600">输入内容（文本或 Base64）</span></label>
+    <textarea id="in" class="mono" rows="6" spellcheck="false" placeholder='例如：你好，轻工具！ 或 aGVsbG8gd29ybGQ='></textarea>
+    <div class="rows" style="align-items:center">
+      <button class="btn" id="btnEncode">编码 → Base64</button>
+      <button class="btn ghost" id="btnDecode">解码 → 文本</button>
+      <label class="opt"><input type="checkbox" id="urlSafe"> URL-safe（- _ 无填充）</label>
+    </div>
+    <div class="rows" style="margin-top:4px">
+      <button class="btn gray" id="btnSample">示例数据</button>
+      <button class="btn gray" id="btnClear">清空</button>
+    </div>
+    <div class="err" id="errBox"><b>✗ 处理失败：</b><span id="errMsg"></span></div>
+    <div class="out-head" id="outHead">
+      <label class="lbl">输出结果</label>
+      <button class="btn ghost" id="btnCopy">复制结果</button>
+    </div>
+    <textarea id="out" class="out" rows="5" readonly placeholder="结果将显示在这里"></textarea>
+    <div class="stat">
+      <span><b id="stChars">-</b>输入字符数</span>
+      <span><b id="stBytes">-</b>UTF-8 字节数</span>
+      <span><b id="stLen">-</b>输出长度</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>文件 → Base64（DataURL）</h2>
+    <p class="desc">选择任意本地文件，将其编码为 Base64 格式的 DataURL（可用于图片转码、前端内联资源等场景），全部在本地完成。</p>
+    <label class="drop" id="dropZone">
+      <input type="file" id="fileInput" style="display:none">
+      <span style="font-size:28px">📄</span>
+      <b>点击选择本地文件</b>
+      <p>建议不超过 10MB</p>
+    </label>
+    <div class="out-head" id="fOutHead">
+      <label class="lbl">文件 DataURL</label>
+      <button class="btn ghost" id="fCopy">复制 DataURL</button>
+    </div>
+    <textarea id="fOut" class="out" rows="4" readonly placeholder="选择文件后这里会出现 data:... 开头的 Base64 内容"></textarea>
+    <div class="stat">
+      <span><b id="fName">-</b>文件名</span>
+      <span><b id="fSize">-</b>文件大小</span>
+      <span><b id="fMime">-</b>MIME 类型</span>
+    </div>
+  </div>
+
+  <section class="seo-note">
+    <p>Base64 编解码工具：文本一键编码为 Base64、Base64 解码还原中文原文，完整支持 UTF-8 编码的中文与 emoji 表情符号；提供 URL-safe 变体（- 与 _ 字符、去除填充符）适用于网址传输场景。同时支持将本地文件转换为 DataURL（data: 前缀的 Base64），可用于图片转码、HTML 内联资源、邮件附件等。所有处理均在浏览器本地完成，内容不会上传到任何服务器。</p>
+  </section>
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 API / 开发者工具类产品广告（自助广告位）</div>
+  <footer>轻工具 · Base64 编解码 · 纯本地运行</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id);};
+  var inEl=$("in"),outEl=$("out"),errBox=$("errBox"),errMsg=$("errMsg");
+  var outHead=$("outHead"),btnCopy=$("btnCopy");
+  var urlSafe=$("urlSafe");
+  var stChars=$("stChars"),stBytes=$("stBytes"),stLen=$("stLen");
+  var dropZone=$("dropZone"),fileInput=$("fileInput");
+  var fOutHead=$("fOutHead"),fCopy=$("fCopy"),fOut=$("fOut");
+  var fName=$("fName"),fSize=$("fSize"),fMime=$("fMime");
+
+  var SAMPLE_TEXT='你好，轻工具！\n{"site":"https://li20160503.github.io/qc-tools-site/","free":true,"emoji":"🚀"}';
+  var SAMPLE_B64='aGVsbG8gd29ybGQ=';
+
+  function showErr(msg){errMsg.textContent=msg;errBox.classList.add("on");}
+  function hideErr(){errBox.classList.remove("on");}
+
+  function strBytes(s){
+    var te=new TextEncoder();
+    return te.encode(s);
+  }
+
+  // UTF-8 字符串 -> Base64（完整支持中文、emoji）
+  function utf8ToBase64(str){
+    var bytes=strBytes(str);
+    var bin="";
+    for(var i=0;i<bytes.length;i+=0x8000){
+      bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));
+    }
+    return btoa(bin);
+  }
+
+  // Base64 -> UTF-8 字符串（自动兼容 URL-safe）
+  function base64ToUtf8(b64){
+    var s=String(b64).replace(/[\r\n\t ]/g,"");
+    if(s.length===0){throw new Error("内容为空");}
+    s=s.replace(/-/g,"+").replace(/_/g,"/");
+    while(s.length%4!==0){s+="=";}
+    if(!/^[A-Za-z0-9+/]*={0,2}$/.test(s)){throw new Error("包含非法字符，不是有效的 Base64");}
+    var bin;
+    try{bin=atob(s);}catch(e){throw new Error("Base64 内容无法解码（可能已损坏）");}
+    var bytes=new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++){bytes[i]=bin.charCodeAt(i);}
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+
+  function toUrlSafe(b64){
+    return b64.replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  }
+
+  function updateStats(chars,bytes,len){
+    stChars.textContent=chars;
+    stBytes.textContent=bytes;
+    stLen.textContent=len;
+  }
+
+  function doEncode(){
+    hideErr();
+    var v=inEl.value;
+    if(!v){showErr("请输入要编码的文本");return;}
+    var b=utf8ToBase64(v);
+    if(urlSafe.checked){b=toUrlSafe(b);}
+    outEl.value=b;
+    outHead.classList.add("on");
+    updateStats(v.length,strBytes(v).length,b.length);
+  }
+
+  function doDecode(){
+    hideErr();
+    var v=inEl.value.trim();
+    if(!v){showErr("请输入要解码的 Base64 内容");return;}
+    var t;
+    try{t=base64ToUtf8(v);}catch(e){showErr(e.message);return;}
+    outEl.value=t;
+    outHead.classList.add("on");
+    updateStats(v.length,v.length,t.length);
+  }
+
+  function copyText(txt,btn){
+    if(!txt){return;}
+    function done(){var old=btn.textContent;btn.textContent="✓ 已复制";setTimeout(function(){btn.textContent=old;},1200);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,function(){
+        fallbackCopy(txt);done();
+      });
+    }else{
+      fallbackCopy(txt);done();
+    }
+  }
+  function fallbackCopy(txt){
+    var ta=document.createElement("textarea");
+    ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");}catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  function fmtSize(n){
+    if(n<1024)return n+" B";
+    if(n<1024*1024)return (n/1024).toFixed(2)+" KB";
+    return (n/1024/1024).toFixed(2)+" MB";
+  }
+
+  $("btnEncode").addEventListener("click",doEncode);
+  $("btnDecode").addEventListener("click",doDecode);
+  $("btnSample").addEventListener("click",function(){
+    inEl.value=SAMPLE_TEXT;hideErr();inEl.focus();
+  });
+  $("btnClear").addEventListener("click",function(){
+    inEl.value="";outEl.value="";hideErr();outHead.classList.remove("on");
+    updateStats("-","-","-");
+  });
+  btnCopy.addEventListener("click",function(){copyText(outEl.value,btnCopy);});
+  fCopy.addEventListener("click",function(){copyText(fOut.value,fCopy);});
+
+  dropZone.addEventListener("click",function(){fileInput.click();});
+  fileInput.addEventListener("change",function(){
+    var f=fileInput.files&&fileInput.files[0];
+    if(!f)return;
+    if(f.size>10*1024*1024){fOut.value="";fOutHead.classList.remove("on");fName.textContent="-";fSize.textContent="-";fMime.textContent="-";return;}
+    var rd=new FileReader();
+    rd.onload=function(){
+      fOut.value=rd.result;
+      fOutHead.classList.add("on");
+      fName.textContent=f.name;
+      fSize.textContent=fmtSize(f.size);
+      fMime.textContent=f.type||"未知";
+    };
+    rd.readAsDataURL(f);
+  });
+
+  // 预填示例，方便首屏即用
+  inEl.value=SAMPLE_B64;
+})();
+</script>
+</body>
+</html>
