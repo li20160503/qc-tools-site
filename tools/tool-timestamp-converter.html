@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>时间戳转换工具 · 在线 Unix 时间戳 / 日期互转</title>
+<meta name="description" content="免费在线时间戳转换工具：Unix 时间戳与日期时间互相换算，自动识别秒/毫秒，一键获取当前时间戳，支持复制结果。所有处理在浏览器本地完成，不上传数据。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb;--ok:#16a34a;--err:#dc2626}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+header{text-align:center;padding:18px 0 8px}
+header h1{font-size:26px;font-weight:800;background:linear-gradient(120deg,var(--pri),var(--pri2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{color:var(--mut);margin-top:8px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 6px 24px rgba(79,70,229,.07);margin-top:18px}
+.card h2{font-size:18px;margin-bottom:4px}
+.desc{color:var(--mut);font-size:13px;margin-bottom:14px}
+textarea,input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;font-family:inherit;background:#fbfbfe;outline:none;transition:.15s}
+textarea:focus,input:focus,select:focus{border-color:var(--pri);background:#fff}
+textarea.mono,input.mono{font-family:Consolas,Menlo,Monaco,"Courier New",monospace}
+input[type=datetime-local]{font-family:Consolas,Menlo,Monaco,"Courier New",monospace}
+.rows{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.btn{border:none;background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:10px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:#eef0ff;color:var(--pri)}
+.btn.gray{background:#f1f5f9;color:#475569}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-left:10px;vertical-align:middle}
+.seg button{border:none;background:#fbfbfe;color:var(--mut);padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:.15s}
+.seg button.on{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff}
+.err{display:none;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:12px}
+.err.on{display:block}
+.ok-tip{display:none;background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:12px}
+.ok-tip.on{display:block}
+.out-box{display:none;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:12px;background:#0f172a;color:#e2e8f0;font-family:Consolas,Menlo,Monaco,"Courier New",monospace;font-size:13px;line-height:1.8;overflow-x:auto}
+.out-box.on{display:block}
+.out-box .k{color:#93c5fd;font-weight:700}
+.out-box .v{color:#86efac;word-break:break-all}
+.out-box.row2{border:1px solid var(--line);background:#fbfbfe;color:var(--ink);font-size:14px}
+.out-box.row2 .k{color:var(--pri)}
+.out-box.row2 .v{color:var(--ink)}
+.lbl{font-size:13px;font-weight:700;color:var(--ink)}
+.seo-note{margin-top:30px;color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}
+@media(max-width:640px){header h1{font-size:21px}.card{padding:18px 14px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link" href="../kb/">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+  <header>
+    <h1>时间戳转换工具</h1>
+    <p>Unix 时间戳 ↔ 日期时间互转 · 自动识别秒 / 毫秒 · 一键获取当前时间戳</p>
+  </header>
+
+  <div class="card">
+    <h2>① 时间戳 → 日期时间</h2>
+    <p class="desc">粘贴 Unix 时间戳（秒或毫秒均可，自动识别），实时换算为可读的日期时间。</p>
+    <div class="rows">
+      <input id="tsIn" class="mono" type="text" placeholder="例如：1700000000 或 1700000000000" spellcheck="false">
+    </div>
+    <div class="rows" style="margin-top:8px">
+      <button class="btn ghost" id="btnNow">填入当前时间戳</button>
+      <button class="btn gray" id="btnTsSample">示例数据</button>
+      <button class="btn gray" id="btnTsClear">清空</button>
+    </div>
+    <div class="err" id="tsErr"><b>✗ 无法识别：</b><span id="tsErrMsg"></span></div>
+    <div class="out-box row2" id="tsOut">
+      <div><span class="k">本地时间：</span><span class="v" id="tsLocal">-</span></div>
+      <div><span class="k">UTC 时间：</span><span class="v" id="tsUtc">-</span></div>
+      <div><span class="k">识别单位：</span><span class="v" id="tsUnit">-</span></div>
+      <div><span class="k">时间戳值：</span><span class="v" id="tsRaw">-</span></div>
+    </div>
+    <div style="margin-top:10px;display:none" id="tsCopyRow"><button class="btn" id="tsCopy">复制结果</button></div>
+  </div>
+
+  <div class="card">
+    <h2>② 日期时间 → 时间戳</h2>
+    <p class="desc">选择或输入日期时间，换算为 Unix 秒级 / 毫秒级时间戳。</p>
+    <div class="rows">
+      <input type="datetime-local" id="dtIn">
+    </div>
+    <div class="rows" style="margin-top:8px">
+      <button class="btn" id="btnDtNow">用当前时间</button>
+      <button class="btn gray" id="btnDtSample">示例数据</button>
+      <button class="btn gray" id="btnDtClear">清空</button>
+    </div>
+    <div class="out-box row2" id="dtOut">
+      <div><span class="k">秒级时间戳：</span><span class="v" id="dtSec">-</span></div>
+      <div><span class="k">毫秒级时间戳：</span><span class="v" id="dtMs">-</span></div>
+      <div><span class="k">对应 UTC：</span><span class="v" id="dtUtc">-</span></div>
+    </div>
+    <div style="margin-top:10px;display:none" id="dtCopyRow"><button class="btn" id="dtCopy">复制秒级时间戳</button></div>
+  </div>
+
+  <section class="seo-note">
+    <p>时间戳转换工具：支持 Unix 时间戳（秒 / 毫秒自动识别）与日期时间双向互转，自动换算为浏览器本地时区与 UTC 时间，附一键复制与当前时间戳获取。适用于对接接口签名、日志排查、数据库时间字段调试、定时任务排期等场景。所有计算均在浏览器本地完成，内容不会上传到任何服务器。</p>
+  </section>
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 API / 开发者工具类产品广告（自助广告位）</div>
+  <footer>轻工具 · 时间戳转换 · 纯本地运行</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id);};
+  var tsIn=$("tsIn"),tsErr=$("tsErr"),tsErrMsg=$("tsErrMsg"),tsOut=$("tsOut");
+  var tsLocal=$("tsLocal"),tsUtc=$("tsUtc"),tsUnit=$("tsUnit"),tsRaw=$("tsRaw");
+  var tsCopyRow=$("tsCopyRow"),tsCopy=$("tsCopy");
+  var dtIn=$("dtIn"),dtOut=$("dtOut"),dtSec=$("dtSec"),dtMs=$("dtMs"),dtUtc=$("dtUtc");
+  var dtCopyRow=$("dtCopyRow"),dtCopy=$("dtCopy");
+
+  function pad2(n){return (n<10?"0":"")+n;}
+  function fmtLocal(d){
+    return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+" "
+      +pad2(d.getHours())+":"+pad2(d.getMinutes())+":"+pad2(d.getSeconds());
+  }
+  function fmtUtc(d){
+    return d.getUTCFullYear()+"-"+pad2(d.getUTCMonth()+1)+"-"+pad2(d.getUTCDate())+" "
+      +pad2(d.getUTCHours())+":"+pad2(d.getUTCMinutes())+":"+pad2(d.getUTCSeconds())+" UTC";
+  }
+  function fmtLocalFull(d){
+    return fmtLocal(d)+"（UTC"+(d.getTimezoneOffset()<=0?"+":"−")+(Math.abs(d.getTimezoneOffset()/60))
+      +" 时区，当地时区显示）";
+  }
+
+  // 兼容老浏览器：datetime-local 不支持时手动解析 YYYY-MM-DD HH:mm 文本
+  function parseDateTimeText(s){
+    var m=/^(\d{4})-(\d{1,2})-(\d{1,2})[T ](\d{1,2}):(\d{2})(?::(\d{2}))?$/.exec(s.trim());
+    if(!m)return null;
+    return new Date(+m[1],+m[2]-1,+m[3],+m[4],+m[5],m[6]?+m[6]:0,0);
+  }
+
+  function tsToDate(value){
+    var isMs=false, num=value;
+    if(/^\d{13}$/.test(String(value).trim())){isMs=true;}
+    else if(/^\d{10}$/.test(String(value).trim())){isMs=false;}
+    else{
+      var n=Number(value);
+      if(!isFinite(n)||Math.abs(n)>1e15){return null;}
+      isMs=Math.abs(n)>1e11;
+    }
+    var d=new Date(isMs?num:(num*1000));
+    if(isNaN(d.getTime()))return null;
+    return {d:d,isMs:isMs,raw:isMs?String(num):Math.floor(num/1000)+"（秒）"};
+  }
+
+  function renderTs(){
+    var v=tsIn.value.trim();
+    tsOut.className="out-box row2";
+    tsErr.className="err";
+    tsCopyRow.style.display="none";
+    if(!v){return;}
+    var r=tsToDate(v);
+    if(!r){tsErrMsg.textContent="请输入有效的 Unix 时间戳（10 位秒或 13 位毫秒）。";tsErr.className="err on";return;}
+    tsLocal.textContent=fmtLocalFull(r.d);
+    tsUtc.textContent=fmtUtc(r.d);
+    tsUnit.textContent=r.isMs?"毫秒（13 位）":"秒（10 位）";
+    tsRaw.textContent=v.trim()+(r.isMs?"（ms）":"（s）");
+    tsCopyRow.style.display="block";
+  }
+
+  function dateToTs(){
+    var v=dtIn.value;
+    dtOut.className="out-box row2";
+    if(!v){dtOut.className="out-box row2";return;}
+    var d=parseDateTimeText(v);
+    if(!d||isNaN(d.getTime())){d=new Date(v);}
+    if(!d||isNaN(d.getTime())){return;}
+    var ms=d.getTime();
+    dtSec.textContent=Math.floor(ms/1000);
+    dtMs.textContent=ms;
+    dtUtc.textContent=fmtUtc(d);
+    dtCopyRow.style.display="block";
+  }
+
+  function setDtValue(d){
+    var s=d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate())+"T"+pad2(d.getHours())+":"+pad2(d.getMinutes());
+    dtIn.value=s;
+    dateToTs();
+  }
+
+  tsIn.addEventListener("input",renderTs);
+
+  $("btnNow").addEventListener("click",function(){
+    tsIn.value=String(Math.floor(Date.now()/1000));
+    renderTs();
+  });
+  $("btnTsSample").addEventListener("click",function(){
+    tsIn.value="1700000000";
+    renderTs();
+  });
+  $("btnTsClear").addEventListener("click",function(){
+    tsIn.value="";tsOut.className="out-box row2";tsErr.className="err";tsCopyRow.style.display="none";
+  });
+  tsCopy.addEventListener("click",function(){
+    var txt="时间戳: "+tsRaw.textContent+"\n本地时间: "+tsLocal.textContent+"\nUTC 时间: "+tsUtc.textContent;
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt);}
+    else{var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);}
+    var old=tsCopy.textContent;tsCopy.textContent="已复制 ✓";tsCopy.style.background="#16a34a";
+    setTimeout(function(){tsCopy.textContent=old;tsCopy.style.background="";},1500);
+  });
+
+  $("btnDtNow").addEventListener("click",function(){setDtValue(new Date());});
+  $("btnDtSample").addEventListener("click",function(){setDtValue(new Date(2024,10,14,12,0,0));});
+  $("btnDtClear").addEventListener("click",function(){
+    dtIn.value="";dtOut.className="out-box row2";dtCopyRow.style.display="none";
+  });
+  dtIn.addEventListener("input",dateToTs);
+  dtCopy.addEventListener("click",function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(dtSec.textContent);}
+    else{var ta=document.createElement("textarea");ta.value=dtSec.textContent;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);}
+    var old=dtCopy.textContent;dtCopy.textContent="已复制 ✓";dtCopy.style.background="#16a34a";
+    setTimeout(function(){dtCopy.textContent=old;dtCopy.style.background="";},1500);
+  });
+
+  // 初始示例：填入当前时间戳便于直接体验
+  tsIn.value=String(Math.floor(Date.now()/1000));
+  renderTs();
+  setDtValue(new Date());
+})();
+</script>
+</body>
+</html>
