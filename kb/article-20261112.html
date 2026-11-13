@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 AI 翻译外文邮件和资料：3 分钟出稿、术语不跑偏（附可复制提示词）</title>
+<meta name="description" content="收到外文邮件、产品资料看不懂？用 AI 翻译的正确姿势：先定用途和语气、套用通用翻译提示词、术语表锁定专名、关键句回译核对，附可直接复制的提示词与常见坑。">
+<style>
+:root{--bg:#f3f4ff;--card:#ffffff;--ink:#1e1b4b;--mut:#64748b;--pri:#4f46e5;--pri2:#7c3aed;--line:#e5e7eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.site-nav{display:flex;align-items:center;gap:16px;margin:0 0 18px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap}
+.site-nav .nav-logo{font-weight:800;font-size:15px;color:var(--pri)}
+.site-nav .nav-link{font-size:13px;color:var(--mut);text-decoration:none;font-weight:600}
+.site-nav .nav-link:hover{color:var(--pri)}
+.site-nav .nav-link.on{color:var(--pri)}
+article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 28px;box-shadow:0 6px 24px rgba(79,70,229,.07)}
+article h1{font-size:24px;font-weight:800;line-height:1.45;margin-bottom:10px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+article h2{font-size:18px;font-weight:700;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--pri)}
+article p{margin:10px 0;font-size:15px}
+article ol{margin:10px 0 10px 22px}
+article ol li{margin:8px 0;font-size:15px}
+.prompt-box{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0;font-size:13.5px;white-space:pre-wrap;line-height:1.7;color:#334155}
+.prompt-label{display:inline-block;background:#eef2ff;color:var(--pri);font-size:12px;font-weight:700;border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.tips{margin:10px 0;padding-left:20px}
+.tips li{margin:8px 0;font-size:15px}
+.cta{background:linear-gradient(120deg,#eef2ff,#f5f3ff);border:1px dashed var(--pri);border-radius:12px;padding:16px 18px;margin:26px 0 0;font-size:15px}
+.cta b{color:var(--pri)}
+.ad-slot{margin:22px 0 0;background:#fffbe6;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;text-align:center;font-size:12px;color:#92400e}
+.ad-slot b{font-size:13px}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px;line-height:1.9}
+@media(max-width:640px){article{padding:22px 16px}article h1{font-size:20px}.site-nav{gap:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="site-nav">
+    <a class="nav-logo" href="../">⚡ 轻工具</a>
+    <a class="nav-link" href="../">首页工具</a>
+    <a class="nav-link on" href="./">知识库</a>
+    <a class="nav-link" href="../prompts/">提示词库</a>
+    <a class="nav-link" href="../shop/">产品店</a>
+  </nav>
+
+  <article>
+    <h1>用 AI 翻译外文邮件和资料：3 分钟出稿、术语不跑偏（附可复制提示词）</h1>
+    <div class="meta">发布日期：2026-11-12 · AI 办公效率知识库 · 原创教程</div>
+
+    <p>收到一封全英文的客户催办邮件，单词都认识、连起来读不懂，回信憋了半小时；一份德语产品手册要提取关键参数，逐段查词查到头晕。更怕的是把人名、公司名、产品型号翻错，正式场合闹笑话。直接丢给在线词典，出来的是逐词硬译；丢给 AI 却不说清要求，出来的则是一股"翻译腔"。翻译这件事，三成靠工具，七成靠"怎么跟 AI 提要求"。</p>
+    <p>下面这套流程适用于所有主流对话式 AI（DeepSeek、豆包、文心一言、Kimi 等）。</p>
+
+    <h2>第一步：动手前先定「用途和语气」</h2>
+    <p>同样一段话，内部传阅和发回给客户，译法完全不同。开翻之前先在脑子里回答三个问题：</p>
+    <ol>
+      <li>这份材料给谁看？——客户 / 领导 / 同事 / 自己参考；</li>
+      <li>双方是什么关系？——正式商务、内部协作，还是快速了解大意；</li>
+      <li>有没有必须保留的专名？——人名、公司名、产品型号、条款编号。</li>
+    </ol>
+    <p>这三个问题想清楚，提示词就写好了一半。</p>
+
+    <h2>第二步：套用「通用翻译」主提示词</h2>
+    <p>把原文完整贴进对话框，配上下面这段提示词，不要只丢一句"帮我翻译"：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 通用翻译提示词</span>你是一位资深中英双语译员，擅长商务场景。请翻译下面这段文本，要求：
+1. 先说明这段文本的用途场景和语气（正式 / 中性 / 口语化）；
+2. 输出译文后，附一份"术语表"：把专业术语、人名、公司名、型号逐个列出中英对照；
+3. 人名、公司名、品牌名、产品型号、编号一律保留原文，不音译、不意译；
+4. 长句拆成短句，通顺优先，避免翻译腔；
+5. 结尾列出 2-3 条"待确认点"：语气拿不准或术语有歧义的地方单独标出。
+原文如下：
+【在这里粘贴原文】</div>
+    <p>这样一次拿到"译文 + 术语表 + 待确认点"三件套，可直接当工作稿用。</p>
+
+    <h2>第三步：术语锁定，防止「前后不一个叫法」</h2>
+    <p>长文档容易翻到后面，同一个词出现几种译法。翻完后追加这么一句，做一次全文统稿：</p>
+    <div class="prompt-box"><span class="prompt-label">可直接复制 · 术语统一提示词</span>请用刚才术语表中的译法通读全文修正一遍，确保同一个术语全文只保留一种译法；发现术语表遗漏的专名，补充进表格并保持中英对照。</div>
+
+    <h2>第四步：关键句「回译」核对</h2>
+    <ol>
+      <li>把 AI 译好的关键句（数字、日期、金额、否定语如"不晚于""除…之外"）再翻回原文，看意思有没有变形；</li>
+      <li>抽最关键的 1-2 句做回译，比通读整篇都保险；涉及报价、期限的内容，最终以原文和人工复核为准。</li>
+    </ol>
+
+    <h2>常见坑</h2>
+    <ul class="tips">
+      <li><b>只贴原文不给上下文：</b>专名乱翻、语气跑偏是重灾区——比如"Please reply ASAP"，直译成命令式在商务场景很失礼，先定用途再开口；</li>
+      <li><b>术语前后不一：</b>长文档不锁定术语表，同一个词会出现三四种译法，交付前必须做一次统一修正；</li>
+      <li><b>把译文当最终版本：</b>涉及金额、期限、法律性质的内容，AI 译文只能当参考索引，正式使用前逐条人工核对原文。</li>
+    </ul>
+
+    <div class="cta"><b>更多模板可获取：</b>翻译、写作、Excel、PPT 等场景的成品提示词在提示词库与产品店持续上新，收藏本站，每篇教程都附可直接复制的提示词。</div>
+  </article>
+
+  <div class="ad-slot"><b>广告位</b> · 本区域可投放 AI 工具 / 办公效率类产品广告（自助广告位）</div>
+  <footer>
+    1. 内容仅供参考，使用前请结合实际情况核对；<br>
+    2. 更新日期：2026-11-12 · AI 办公效率知识库
+  </footer>
+</div>
+</body>
+</html>
